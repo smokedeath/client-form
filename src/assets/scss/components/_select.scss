@@ -1,0 +1,60 @@
+@include b(select-block) {
+		position: relative;
+		cursor: pointer;
+		height: $base-margin*2.5;
+
+		@include m(active) {
+				@include e(options) {
+						display: block;
+						max-height: $base-margin*15;
+						overflow: scroll;
+				}
+				@include e(caret) {
+						transform: rotate(-180deg);
+						padding: $base-padding/2 0 $base-padding/2 $base-padding;
+				}
+		}
+
+		@include e(select) {
+				width: 100%;
+				height: 100%;
+				border-radius: rem(7px);
+				box-sizing: border-box;
+				padding: $base-padding/2 $base-padding;
+				background: var(--input-background-color);
+				border: rem(1px) solid var(--input-border-color);
+				color: var(--stat-block-route-color);
+				overflow: hidden;
+		}
+
+		@include e(options) {
+				z-index: 200;
+				position: inherit;
+				display: none;
+				color: var(--stat-block-route-color);
+		}
+
+		@include e(option) {
+				background: var(--panel-background);
+				border: rem(1px) solid var(--input-border-color);
+				box-sizing: border-box;
+				border-radius: rem(7px);
+				//margin: $base-margin/2 0;
+				height: $base-padding*3;
+				padding: 0 $base-padding;
+				display: flex;
+				align-items: center;
+				&:hover {
+						background: var(--pagination-disabled-color);
+				}
+		}
+
+		@include e(caret) {
+				position: absolute;
+				height: 100%;
+				right: 0;
+				top: 0;
+				padding: $base-padding/2 $base-padding $base-padding/2 0;
+		}
+
+}

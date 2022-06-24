@@ -1,0 +1,14 @@
+<span (click)="onChange()" style="cursor: pointer">
+    <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" *ngIf="!checked">
+        <rect x="0.5" y="0.5" width="25" height="25" rx="4.5" fill="var(--panel-background)" stroke="var(--pagination-disabled-color)"/>
+        <circle *ngIf="circle" cx="12.5" cy="13.5" r="2.5" fill="#097CDC"/>
+    </svg>
+
+    <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" *ngIf="checked">
+        <rect x="0.5" y="0.5" width="25" height="25" rx="4.5" fill="#1F82F5" stroke="#1975DF"/>
+        <rect x="20.5896" y="8.41148" width="13" height="3" rx="1.5" transform="rotate(124.87 20.5896 8.41148)"
+              fill="white" stroke="#F0F0F0"/>
+        <rect x="0.706839" y="-0.0194601" width="8.98154" height="3" rx="1.5"
+              transform="matrix(0.726299 0.687379 0.687379 -0.726299 5.20684 12.3859)" fill="white" stroke="#F0F0F0"/>
+    </svg>
+</span>

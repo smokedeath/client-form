@@ -1,0 +1,11 @@
+<div clickOutside (clickOutside)="show = false" class="select-block" [class.select-block--active]="show"
+     (click)="show = !show">
+    <div class="select-block__select">
+        {{getName(selectedItem) || 'Ничего не выбрано'}}
+    </div>
+    <drop-down-icon class="select-block__caret"></drop-down-icon>
+    <div class="select-block__options">
+        <div class="select-block__option" *ngFor="let item of data"
+             (click)="selectItem(item)">{{item?.external_name || item?.name}}</div>
+    </div>
+</div>
