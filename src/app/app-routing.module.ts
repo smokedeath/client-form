@@ -7,7 +7,7 @@ import { AddressComponent } from './routes/client-form/children/address/address.
 import { IdentityComponent } from './routes/client-form/children/identity/identity.component';
 
 const routes: Routes = [
-    { path: '', redirectTo: '/client-form', pathMatch: 'full' },
+    { path: '', redirectTo: '/client-form/client', pathMatch: 'full' },
     {
         path: 'client-form', component: ClientFormComponent, children: [
             { path: 'client', component: ClientComponent },
