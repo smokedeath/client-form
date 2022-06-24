@@ -1,0 +1,27 @@
+@include b(panel) {
+		@include e(middle-show) {
+				@include flex-align(center, middle);
+		}
+
+		@include e(upload) {
+				position: relative;
+				display: flex;
+				justify-content: space-evenly;
+				align-items: center;
+				background: var(--base-background);
+				border: rem(1px) dashed var(--base-border-upload);
+				border-radius: rem(15px);
+				height: rem(106px);
+				color: var(--base-font-color);
+
+				@include e(icon) {
+						position: absolute;
+						right: 1rem;
+				}
+
+				img {
+						width: rem(42px);
+						padding: 0 1rem;
+				}
+		}
+}

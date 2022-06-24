@@ -1,0 +1,82 @@
+<input name="inputFile" type="file" accept="image/*" #inputFile (change)="onSelectFile()" style="display: none">
+<section class="registration">
+    <div class="container h-100">
+        <div class="flex-1 align-middle align-center h-100">
+            <div class="registration__section">
+                <form [formGroup]="form">
+                    <div class="registration__block ta-center m-b">
+                        <label class="m-b">Тип документа*</label>
+                        <span class="w100">
+                            <select-block [data]="documents" (selected)="form.patchValue({'documentType': $event})"
+                                          [current]="form.get('documentType').value"></select-block>
+                        </span>
+                    </div>
+                    <div class="registration__block ta-center m-b">
+                        <label class="m-b" for="serial">Серия</label>
+                        <input formControlName="serial" type="text" id="serial" class="registration__input"/>
+                    </div>
+                    <div class="registration__block ta-center m-b">
+                        <label class="m-b" for="documentNumber">Номер*</label>
+                        <input formControlName="documentNumber" type="text" id="documentNumber"
+                               [class.registration__input--error]="form.get('documentNumber').invalid && form.get('documentNumber').touched"
+                               class="registration__input"/>
+                        <div class="red-text"
+                             *ngIf="form.get('documentNumber').invalid && form.get('documentNumber').touched">
+                            <small *ngIf="form.get('documentNumber').errors['required']">
+                                Поле должно быть заполнено.
+                            </small>
+                        </div>
+                    </div>
+                    <div class="registration__block ta-center m-b">
+                        <label class="m-b" for="whoIssued">Кем выдан</label>
+                        <input formControlName="whoIssued" type="text" id="whoIssued" class="registration__input"/>
+                    </div>
+                    <div class="registration__block ta-center m-b">
+                        <label class="m-b" for="issuedDate">Дата выдачи*</label>
+                        <input formControlName="issuedDate" type="date" id="issuedDate" min="1900-01-01"
+                               max="2022-12-31"
+                               [class.registration__input--error]="form.get('issuedDate').invalid && form.get('issuedDate').touched"
+                               class="registration__input"/>
+                        <div class="red-text"
+                             *ngIf="form.get('issuedDate').invalid && form.get('issuedDate').touched">
+                            <small *ngIf="form.get('issuedDate').errors['required']">
+                                Поле должно быть заполнено.
+                            </small>
+                            <small *ngIf="form.get('issuedDate').errors['dateValidator']">
+                                Поле должно быть заполнено.
+                            </small>
+                        </div>
+                    </div>
+                    <div class="registration__block ta-center m-b">
+                        <label class="m-b" for="whoIssued">Файл</label>
+
+                        <div class="panel__upload" (click)="selectFile()">
+                            <ng-container *ngIf="!fileExist; else fileSelected">
+                                <img class=" cursor" src="/assets/sprites/icon_file_import.svg" alt="ile_import">
+                                <span class="text-bold cursor">
+                                    <span class="blue-text">Нажмите сюда</span>, чтобы выбрать файл
+                                </span>
+                            </ng-container>
+                            <ng-template #fileSelected>
+                               <span class="text-small">
+                                   Файл успешно загружен!
+                               </span>
+                                <span class="panel__upload__icon cursor" (click)="deleteFile()">
+                                    <basket-icon></basket-icon>
+                                </span>
+                            </ng-template>
+                        </div>
+                    </div>
+                    <div class="m-b-2 w100 flex-1 align-center">
+                        <button class="registration__button" type="submit" (click)="onNextClick()"
+                                [disabled]="form.invalid || form.disabled">Далее
+                        </button>
+                    </div>
+                    <div class="text-small gray-text">
+                        *Поля обязательные к заполнению
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

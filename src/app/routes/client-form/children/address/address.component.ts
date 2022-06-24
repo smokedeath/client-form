@@ -65,7 +65,7 @@ export class AddressComponent extends BaseDestroy implements OnInit {
     public onNextClick(): void {
         if ( this.form.valid ) {
             this.storageProvider.set( 'address', this.form.value );
-            // this.router.navigate( [ 'client-form/identity' ] );
+            this.router.navigate( [ 'client-form/identity' ] );
         }
     }
 }

@@ -15,7 +15,7 @@ const routes: Routes = [
             { path: 'identity', component: IdentityComponent }
         ]
     },
-    { path: 'create-client', component: CreatedClientComponent }
+    { path: 'created-client', component: CreatedClientComponent }
 ];
 
 @NgModule( {
