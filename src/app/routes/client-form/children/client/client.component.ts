@@ -1,48 +1,56 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Selectors } from '../../../../models/selectors';
 import { ClientService } from '../../../../services/client.service';
-import { Subject, takeUntil, Unsubscribable } from 'rxjs';
+import { StorageProvider } from '../../../../services/storage-provider';
+import { Router } from '@angular/router';
+import { BaseDestroy } from '../../../../services/base-destroy';
 
 @Component( {
     selector: 'client-app',
     templateUrl: './client.component.html'
 } )
 
-export class ClientComponent implements OnInit, OnDestroy {
+export class ClientComponent extends BaseDestroy implements OnInit {
     public form: FormGroup;
     public coordinator: Selectors[] = [];
     public sex: Selectors[] = [];
     public clientsGroup: Selectors[] = [];
-    private sub = new Subject<void>();
     
     constructor(
+        private router: Router,
+        private storageProvider: StorageProvider,
         private clientService: ClientService
     ) {
+        super();
         this.createForm();
         this.coordinator = [];
     }
     
     public ngOnInit(): void {
-        this.clientService.getCoordinators().pipe( takeUntil( this.sub ) ).subscribe( value => {
+        this.clientService.getCoordinators().pipe( this.unsubscribeOnDestroy ).subscribe( value => {
             this.coordinator = [];
             if ( value && value.length > 0 ) {
                 this.coordinator.push( { id: '0', value: 'Ничего не выбрано' } );
                 value.forEach( item => this.coordinator.push( item ) );
             }
         } );
-        this.clientService.getSex().pipe( takeUntil( this.sub ) ).subscribe( value => {
+        this.clientService.getSex().pipe( this.unsubscribeOnDestroy ).subscribe( value => {
             this.sex = [];
             if ( value && value.length > 0 ) {
                 this.sex = [ ...value ];
             }
         } );
-        this.clientService.getClientsGroup().pipe( takeUntil( this.sub ) ).subscribe( value => {
+        this.clientService.getClientsGroup().pipe( this.unsubscribeOnDestroy ).subscribe( value => {
             this.clientsGroup = [];
             if ( value && value.length > 0 ) {
                 this.clientsGroup = [ ...value ];
             }
         } );
+        const oldForm = this.storageProvider.get( 'client' );
+        if ( oldForm ) {
+            this.form.patchValue( oldForm );
+        }
     }
     
     public createForm(): void {
@@ -70,12 +78,8 @@ export class ClientComponent implements OnInit, OnDestroy {
     
     public onNextClick(): void {
         if ( this.form.valid ) {
-            console.log( 'next' );
+            this.storageProvider.set( 'client', this.form.value );
+            this.router.navigate( [ 'client-form/address' ] );
         }
-    }
-    
-    ngOnDestroy() {
-        this.sub.next();
-        this.sub.complete();
     }
 }

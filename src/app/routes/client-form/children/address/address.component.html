@@ -1,0 +1,48 @@
+<section class="registration">
+    <div class="container h-100">
+        <div class="flex-1 align-middle align-center h-100">
+            <div class="registration__section">
+                <form [formGroup]="form">
+                    <div class="registration__block ta-center m-b">
+                        <label class="m-b" for="addressIndex">Индекс</label>
+                        <input formControlName="addressIndex" type="text" id="addressIndex" class="registration__input"/>
+                    </div>
+                    <div class="registration__block ta-center m-b">
+                        <label class="m-b">Страна*</label>
+                        <span class="w100">
+                            <select-block [data]="countries" (selected)="selectCountry($event)"
+                                          [current]="form.get('country').value"></select-block>
+                        </span>
+                    </div>
+                    <div class="registration__block ta-center m-b">
+                        <label class="m-b" for="region">Область</label>
+                        <input formControlName="region" type="text" id="region" class="registration__input"/>
+                    </div>
+                    <div class="registration__block ta-center m-b">
+                        <label class="m-b">Город*</label>
+                        <span class="w100">
+                            <select-block [data]="cities" (selected)="form.patchValue({'city': $event})"
+                                          [current]="form.get('city').value"></select-block>
+                        </span>
+                    </div>
+                    <div class="registration__block ta-center m-b">
+                        <label class="m-b" for="streetName">Улица</label>
+                        <input formControlName="streetName" type="text" id="streetName" class="registration__input"/>
+                    </div>
+                    <div class="registration__block ta-center m-b">
+                        <label class="m-b" for="building">Дом</label>
+                        <input formControlName="building" type="text" id="building" class="registration__input"/>
+                    </div>
+                    <div class="m-b-2 w100 flex-1 align-center">
+                        <button class="registration__button" type="submit" (click)="onNextClick()"
+                                [disabled]="form.invalid || form.disabled">Далее
+                        </button>
+                    </div>
+                    <div class="text-small gray-text">
+                        *Поля обязательные к заполнению
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

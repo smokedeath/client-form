@@ -34,7 +34,9 @@ export class SelectBlockComponent {
     }
     
     public selectItem( item: Selectors ) {
-        this.current = item;
-        this.selected.emit( item );
+        if ( item && item.id !== '0' ) {
+            this.current = item;
+            this.selected.emit( item );
+        }
     }
 }

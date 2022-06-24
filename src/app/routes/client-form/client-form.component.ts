@@ -15,7 +15,7 @@ export class ClientFormComponent implements OnInit {
     }
     
     ngOnInit() {
-        this.router.navigate(['client-form/client']);
+        // this.router.navigate(['client-form/client']);
     }
     
 }
