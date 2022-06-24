@@ -26,15 +26,20 @@ export class AddressComponent extends BaseDestroy implements OnInit {
     }
     
     public ngOnInit(): void {
-        this.clientService.getCountries().pipe( this.unsubscribeOnDestroy ).subscribe( value => {
-            this.countries = [];
-            if ( value && value.length > 0 ) {
-                this.countries = [ ...value ];
+        const client = this.storageProvider.get( 'client' ) || null;
+        if ( client ) {
+            this.clientService.getCountries().pipe( this.unsubscribeOnDestroy ).subscribe( value => {
+                this.countries = [];
+                if ( value && value.length > 0 ) {
+                    this.countries = [ ...value ];
+                }
+            } );
+            const oldForm = this.storageProvider.get( 'address' );
+            if ( oldForm ) {
+                this.form.patchValue( oldForm );
             }
-        } );
-        const oldForm = this.storageProvider.get( 'address' );
-        if ( oldForm ) {
-            this.form.patchValue( oldForm );
+        } else {
+            this.router.navigate( [ 'client-form/client' ] );
         }
     }
     

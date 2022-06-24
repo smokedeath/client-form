@@ -27,7 +27,7 @@ export class CreatedClientComponent implements OnInit {
         this.identity = this.storageProvider.get( 'identity' ) || null;
         if (this.client && this.address && this.identity) {
         } else {
-            this.router.navigate( [ 'client-form' ] );
+            this.router.navigate( [ 'client-form/client' ] );
         }
     }
     

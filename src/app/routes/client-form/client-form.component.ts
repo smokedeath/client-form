@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { StorageProvider } from '../../services/storage-provider';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 
 @Component( {
     selector: 'client-form-app',
@@ -9,9 +9,16 @@ import { Router } from '@angular/router';
 
 export class ClientFormComponent implements OnInit {
     constructor(
-        private router: Router,
-        private storageProvider: StorageProvider
+        private router: Router
     ) {
+        router.events.pipe(
+            filter(event => event instanceof NavigationEnd)
+        )
+        .subscribe(event => {
+            if (event['urlAfterRedirects'] === 'client-form/client' || event['urlAfterRedirects'] === '/client-form') {
+                this.router.navigate( [ 'client-form/client' ]);
+            }
+        });
     }
     
     ngOnInit() {

@@ -30,15 +30,21 @@ export class IdentityComponent extends BaseDestroy implements OnInit {
     }
     
     public ngOnInit(): void {
-        this.clientService.getDocuments().pipe( this.unsubscribeOnDestroy ).subscribe( value => {
-            this.documents = [];
-            if ( value && value.length > 0 ) {
-                this.documents = [ ...value ];
+        const client = this.storageProvider.get( 'client' ) || null;
+        const address = this.storageProvider.get( 'address' ) || null;
+        if (client && address) {
+            this.clientService.getDocuments().pipe( this.unsubscribeOnDestroy ).subscribe( value => {
+                this.documents = [];
+                if ( value && value.length > 0 ) {
+                    this.documents = [ ...value ];
+                }
+            } );
+            const oldForm = this.storageProvider.get( 'identity' );
+            if ( oldForm ) {
+                this.form.patchValue( oldForm );
             }
-        } );
-        const oldForm = this.storageProvider.get( 'identity' );
-        if ( oldForm ) {
-            this.form.patchValue( oldForm );
+        } else {
+            this.router.navigate( [ 'client-form/address' ] );
         }
     }
     
