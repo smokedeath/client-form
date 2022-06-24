@@ -41,8 +41,8 @@
                             <small *ngIf="form.get('birthDay').errors['required']">
                                 Поле должно быть заполнено.
                             </small>
-                            <small *ngIf="form.get('birthDay').errors['dateValidator']">
-                                Поле должно быть заполнено.
+                            <small *ngIf="form.get('issuedDate').errors['date']">
+                                Невалидная дата
                             </small>
                         </div>
                     </div>

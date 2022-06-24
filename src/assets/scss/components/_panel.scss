@@ -1,4 +1,33 @@
 @include b(panel) {
+		margin: $base-margin*.5 0;
+		background: var(--panel-background);
+		box-shadow: var(--panel-box-shadow);
+		border-radius: rem(15px);
+
+		@include e(header) {
+				display: flex;
+				justify-content: space-between;
+				position: relative;
+				font-weight: $bold-font-weight;
+				font-size: 18px;
+				line-height: 22px;
+				color: var(--base-font-color);
+				padding: $base-padding $base-padding*2;
+				width: 100%;
+				border-bottom: 1px solid var(--panel-border-color);
+		}
+
+		@include e(body) {
+				display: flex;
+		}
+
+		@include e(body-label) {
+				font-weight: $base-font-weight;
+				font-size: 14px;
+				line-height: 17px;
+				color: var(--app-input-color);
+		}
+
 		@include e(middle-show) {
 				@include flex-align(center, middle);
 		}

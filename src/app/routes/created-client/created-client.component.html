@@ -1,1 +1,167 @@
-22222
+<div class="result">
+    <div class="row-block cursor" routerLink="/client-form/client">
+        <icon-back></icon-back>
+        <span class="back-link m-l">Создать нового клиент</span>
+    </div>
+    <div class="panel">
+        <div class="panel__header">
+            <span>Новый клиент</span>
+        </div>
+        <div class="panel__body row-block">
+            <div class="col-block padding-2 w-100">
+                <div class="row-block">
+                    <div class="col-block w50">
+                        <div class="text-bold">Фамилия:</div>
+                        <div class="panel__body-label hf-m-t">
+                            {{client?.firstName}}
+                        </div>
+                    </div>
+                    <div class="col-block w50">
+                        <div class="text-bold">Индекс:</div>
+                        <div class="panel__body-label hf-m-t">
+                            {{address?.addressIndex || 'не указано'}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row-block m-t">
+                    <div class="col-block w50">
+                        <div class="text-bold">Имя:</div>
+                        <div class="panel__body-label hf-m-t">
+                            {{client?.lastName}}
+                        </div>
+                    </div>
+                    <div class="col-block w50">
+                        <div class="text-bold">Страна:</div>
+                        <div class="panel__body-label hf-m-t">
+                            {{address?.country?.value}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row-block m-t">
+                    <div class="col-block w50">
+                        <div class="text-bold">Отчество:</div>
+                        <div class="panel__body-label hf-m-t">
+                            {{client?.secondName || 'не указано'}}
+                        </div>
+                    </div>
+                    <div class="col-block w50">
+                        <div class="text-bold">Область:</div>
+                        <div class="panel__body-label hf-m-t">
+                            {{address?.region || 'не указано'}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row-block m-t">
+                    <div class="col-block w50">
+                        <div class="text-bold">Дата рождения:</div>
+                        <div class="panel__body-label hf-m-t">
+                            {{client?.birthDay | date: 'dd.MM.yyyy' }}
+                        </div>
+                    </div>
+                    <div class="col-block w50">
+                        <div class="text-bold">Город:</div>
+                        <div class="panel__body-label hf-m-t">
+                            {{address?.city?.value}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row-block m-t">
+                    <div class="col-block w50">
+                        <div class="text-bold">Номер телефона:</div>
+                        <div class="panel__body-label hf-m-t">
+                            {{client?.phone }}
+                        </div>
+                    </div>
+                    <div class="col-block w50">
+                        <div class="text-bold">Улица:</div>
+                        <div class="panel__body-label hf-m-t">
+                            {{address?.streetName || 'не указано'}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row-block m-t">
+                    <div class="col-block w50">
+                        <div class="text-bold">Пол:</div>
+                        <div class="panel__body-label hf-m-t">
+                            {{client?.sex?.value || 'не указано'}}
+                        </div>
+                    </div>
+                    <div class="col-block w50">
+                        <div class="text-bold">Дом:</div>
+                        <div class="panel__body-label hf-m-t">
+                            {{address?.building || 'не указано'}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row-block m-t">
+                    <div class="col-block w50">
+                        <div class="text-bold">Группа клиентов:</div>
+                        <div class="panel__body-label hf-m-t" *ngIf="client?.clientsGroup">
+                            <span *ngFor="let group of client.clientsGroup; let idx = index">
+                                {{group?.value}} <span *ngIf="idx !== client.clientsGroup.length-1">,</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-block w50">
+                        <div class="text-bold">Тип документа:</div>
+                        <div class="panel__body-label hf-m-t">
+                            {{identity?.documentType?.value}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row-block m-t">
+                    <div class="col-block w50">
+                        <div class="text-bold">Координатор:</div>
+                        <div class="panel__body-label hf-m-t">
+                            {{client?.coordinator?.value || 'не указано'}}
+                        </div>
+                    </div>
+                    <div class="col-block w50">
+                        <div class="text-bold">Серия:</div>
+                        <div class="panel__body-label hf-m-t">
+                            {{identity?.serial || 'не указано'}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row-block m-t">
+                    <div class="col-block w50">
+                        <div class="text-bold">Не отправлять СМС:</div>
+                        <div class="panel__body-label hf-m-t">
+                            {{client?.dontSentSms ? 'Да' : 'Нет' }}
+                        </div>
+                    </div>
+                    <div class="col-block w50">
+                        <div class="text-bold">Номер:</div>
+                        <div class="panel__body-label hf-m-t">
+                            {{identity?.documentNumber}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row-block m-t">
+                    <div class="col-block w50">
+                        <div class="text-bold">Кем выдан:</div>
+                        <div class="panel__body-label hf-m-t">
+                            {{identity?.whoIssued || 'не указано' }}
+                        </div>
+                    </div>
+                    <div class="col-block w50">
+                        <div class="text-bold">Дата выдачи:</div>
+                        <div class="panel__body-label hf-m-t">
+                            {{identity?.issuedDate | date: 'dd.MM.yyyy' }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row-block m-t">
+                    <div class="col-block w50">
+                        <div class="text-bold">Файл:</div>
+                        <div class="panel__body-label hf-m-t">
+                            {{identity?.file?.name || 'не прикреплен' }}
+                        </div>
+                    </div>
+                    <div class="col-block w50">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,10 +1,11 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { BaseDestroy } from '../../../../services/base-destroy';
-import { FormControl, FormGroup, Validator, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { StorageProvider } from '../../../../services/storage-provider';
 import { ClientService } from '../../../../services/client.service';
 import { Selectors } from '../../../../models/selectors';
+import { DateValidator } from '../../../../services/dateValidator.service';
 
 @Component( {
     selector: 'identity-app',
@@ -16,6 +17,7 @@ export class IdentityComponent extends BaseDestroy implements OnInit {
     public form: FormGroup;
     public formData: FormData;
     public fileName: string;
+    public showInfoModal: boolean = false;
     public documents: Selectors[] = [];
     
     constructor(
@@ -50,18 +52,9 @@ export class IdentityComponent extends BaseDestroy implements OnInit {
             serial: new FormControl( '', [] ),
             documentNumber: new FormControl( '', [ Validators.required ] ),
             whoIssued: new FormControl( '', [] ),
-            issuedDate: new FormControl( null, [ Validators.required, this.dateValidator ] ),
+            issuedDate: new FormControl( null, [ Validators.required, DateValidator.date ] ),
             file: new FormControl( null, [] )
         } );
-    }
-    
-    public dateValidator( c: FormControl ) {
-        const dateRegEx = new RegExp( /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/ );
-        const value = new Date( c.value ).getTime();
-        const minDate = new Date( '1900-01-01' ).getTime();
-        const maxDate = new Date( '2022-12-31' ).getTime();
-        const range = minDate < value && value < maxDate;
-        return dateRegEx.test( c.value ) && range ? null : { date: true }
     }
     
     public onSelectFile() {
@@ -77,7 +70,7 @@ export class IdentityComponent extends BaseDestroy implements OnInit {
                     this.fileName = file.name;
                     this.form.patchValue( { file: this.formData } );
                 } else {
-                    this.fileName = '';
+                    this.deleteFile();
                     alert( 'Размер файла не должен привышать 10мб' );
                 }
             } else {
@@ -104,8 +97,13 @@ export class IdentityComponent extends BaseDestroy implements OnInit {
     public onNextClick(): void {
         if ( this.form.valid ) {
             this.storageProvider.set( 'identity', this.form.value );
-            this.router.navigate( [ 'created-client' ] );
+            this.showInfoModal = true;
         }
+    }
+    
+    public onModalClose() {
+        this.showInfoModal = false;
+        this.router.navigate( [ 'created-client' ] );
     }
     
 }

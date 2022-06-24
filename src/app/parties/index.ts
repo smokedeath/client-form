@@ -4,6 +4,7 @@ import { DropDownIconComponent } from './drop-down-icon/drop-down-icon.component
 import { CheckIconComponent } from './check-icon/check-icon.component';
 import { SelectBlockMultiComponent } from './select-block-multi/select-block-multi.component';
 import { BasketIconComponent } from './basket-icon/basket-icon.component';
+import { IconBackComponent } from './icon-back/icon-back.component';
 
 export const parties: any[] = [
     SwitcherComponent,
@@ -11,5 +12,6 @@ export const parties: any[] = [
     DropDownIconComponent,
     CheckIconComponent,
     SelectBlockMultiComponent,
-    BasketIconComponent
+    BasketIconComponent,
+    IconBackComponent
 ];

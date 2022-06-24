@@ -10,6 +10,7 @@ sans-serif;
 		--btn-disabled: #DFE3E5;
 		--base-border-upload: #5A5A5A;
 		--panel-background: #FFFFFF;
+		--panel-box-shadow: 0 rem(4px) rem(15px) rgb(151 151 151 / .25);
 		--switcher-point-color: #DFE3E5;
 		--switcher-disabled-color: #F9F9F9;
 		--modal-container-background: #FFFFFF;
@@ -18,8 +19,12 @@ sans-serif;
 		--input-border-color: #EBEBEB;
 		--stat-block-route-color: #5A5A5A;
 		--disabled-color: #DFE3E5;
+		--modal-border-color: #CCD1D5;
 		--red: #F35252;
 		--gray: #C4C4C4;
+		--black: #000;
+		--green: #0ACB9D;
+		--light-gray: #999999;
 }
 
 $small-font-size: rem(10px);

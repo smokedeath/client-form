@@ -20,12 +20,40 @@
 		height: 100% !important;
 }
 
+@include b(w-100) {
+		width: 100% !important;
+}
+
+@include b(hf-m-t) {
+		margin-top: $base-margin/2 !important;
+}
+
+@include b(row-block) {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+}
+
+@include b(w50) {
+		width: 50%;
+}
+
+@include b(col-block) {
+		display: flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+}
+
 @include b(align-center) {
 		justify-content: center;
 }
 
 @include b(align-middle) {
 		align-items: center;
+}
+
+@include b(align-self-bottom) {
+		align-self: flex-end;
 }
 
 @include b(ta-center) {
@@ -44,8 +72,16 @@
 		margin-right: $base-margin;
 }
 
+@include b(m-t) {
+		margin-top: $base-margin;
+}
+
 @include b(m-l) {
 		margin-left: $base-margin;
+}
+
+@include b(padding-2) {
+		padding: $base-padding*2;
 }
 
 @include b(cursor) {

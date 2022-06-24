@@ -1,0 +1,17 @@
+<div class="modal" [class.modal--active]="show">
+    <div class="modal__container">
+        <div class="modal__header ta-center">
+            Внимание!
+        </div>
+        <div class="modal__body">
+            <div class="modal__label modal__label--bold">
+                Новый клиент успешно создан
+            </div>
+        </div>
+        <div class="modal__footer align-self-bottom">
+            <button class="button button--base button--green" (click)="close.emit()">
+                Продолжить
+            </button>
+        </div>
+    </div>
+</div>

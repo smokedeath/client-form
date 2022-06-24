@@ -1,4 +1,4 @@
-<input name="inputFile" type="file" accept="image/*" #inputFile (change)="onSelectFile()" style="display: none">
+<input name="inputFile" type="file" #inputFile (change)="onSelectFile()" style="display: none">
 <section class="registration">
     <div class="container h-100">
         <div class="flex-1 align-middle align-center h-100">
@@ -42,8 +42,8 @@
                             <small *ngIf="form.get('issuedDate').errors['required']">
                                 Поле должно быть заполнено.
                             </small>
-                            <small *ngIf="form.get('issuedDate').errors['dateValidator']">
-                                Поле должно быть заполнено.
+                            <small *ngIf="form.get('issuedDate').errors['date']">
+                                Невалидная дата
                             </small>
                         </div>
                     </div>
@@ -69,7 +69,7 @@
                     </div>
                     <div class="m-b-2 w100 flex-1 align-center">
                         <button class="registration__button" type="submit" (click)="onNextClick()"
-                                [disabled]="form.invalid || form.disabled">Далее
+                                [disabled]="form.invalid || form.disabled">Сохранить
                         </button>
                     </div>
                     <div class="text-small gray-text">
@@ -80,3 +80,5 @@
         </div>
     </div>
 </section>
+
+<info-modal [show]="showInfoModal" (close)="onModalClose()"></info-modal>

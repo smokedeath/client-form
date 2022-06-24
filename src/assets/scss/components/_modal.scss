@@ -1,0 +1,69 @@
+@include b(modal) {
+		display: none;
+		@include flex-align(center, middle);
+		position: absolute;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(black, .6);
+		z-index: 11;
+
+		@include e(container) {
+				@include flex;
+				@include flex-direction(column);
+				min-width: rem(570px);
+				max-width: rem(640px);
+				height: auto;
+				//min-height: 360px;
+				max-height: 90%;
+				background-color: var(--modal-container-background);
+				border-radius: rem(15px);
+				position: relative;
+				box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.08);
+		}
+
+		@include e(header) {
+				position: relative;
+				font-weight: $bold-font-weight;
+				font-size: rem(18px);
+				line-height: rem(22px);
+				color: var(--base-font-color);
+				padding: $base-padding $base-padding*2;
+				border-bottom: rem(1px) solid var(--modal-border-color);
+		}
+
+		@include e(body) {
+				padding: $base-padding*2;
+				color: var(--base-font-color);
+		}
+
+		@include e(label) {
+				font-weight: $base-font-weight;
+				font-size: 14px;
+				line-height: 17px;
+				color: var(--base-font-color);
+				margin: $base-margin 0;
+
+				@include m(bold) {
+						font-weight: $bold-font-weight;
+				}
+		}
+
+		@include e(footer) {
+				bottom: 0;
+				padding-right: $base-padding*2;
+				margin-bottom: $base-margin;
+		}
+
+		@include m(active) {
+				@include flex;
+		}
+}
+
+@include b(close) {
+		position: absolute;
+		right: 0;
+		top: 0;
+		padding: $base-padding;
+		cursor: pointer;
+}

@@ -1,0 +1,31 @@
+@include b(button) {
+		position: relative;
+		margin: 0 1rem;
+		cursor: pointer;
+
+		@include m(base) {
+				padding: 1rem 2rem;
+				font-weight: $bold-font-weight;
+				font-size: rem(12px);
+				line-height: rem(15px);
+				border: none;
+				color: var(--modal-container-background);
+				border-radius: rem(30px);
+				margin: 0;
+
+				&:hover {
+						border: rem(1px) solid #adb5bd;
+						box-shadow: 0 rem(4px) rem(15px) rgb(151 151 151 / 25%);
+				}
+		}
+
+		@include m(green) {
+				background: var(--green);
+		}
+
+		&:disabled {
+				border: 1px solid var(--light-gray) !important;
+				color: var(--light-gray) !important;
+				box-shadow: none !important;
+		}
+}
