@@ -7,7 +7,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 export class CheckIconComponent {
     @Input() checked: boolean = false;
-    @Input() circle: boolean = false;
     @Output() change: EventEmitter<boolean>;
     
     constructor() {

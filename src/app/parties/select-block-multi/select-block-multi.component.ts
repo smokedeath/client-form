@@ -4,37 +4,40 @@ import { Selectors } from '../../models/selectors';
 export const MAX_LENGTH = 20;
 
 @Component( {
-    selector: 'select-block',
-    templateUrl: './select-block.component.html'
+    selector: 'select-block-multi',
+    templateUrl: './select-block-multi.component.html'
 } )
 
-export class SelectBlockComponent {
+export class SelectBlockMultiComponent {
     @Input() data: Selectors[] = [];
-    
-    @Input() set current( value: Selectors ) {
-        this.selectedItem = null;
-        if ( value ) {
-            this.selectedItem = { ...value };
-        }
-    }
-    
-    @Output() selected: EventEmitter<Selectors>
+    @Input() selectedItems: Selectors[] = [];
+    @Output() selected: EventEmitter<Selectors[]>
     public show: boolean = false;
-    public selectedItem: Selectors;
     
     constructor() {
-        this.selected = new EventEmitter<Selectors>();
+        this.selected = new EventEmitter<Selectors[]>();
     }
     
-    public getName( item: Selectors ): string {
-        if ( item ) {
-            return item.value && item.value.length > MAX_LENGTH ? `${ item.value.substr( 0, MAX_LENGTH ) }...` : item.value;
+    public get getName(): string {
+        if ( this.selectedItems && this.selectedItems.length > 0 ) {
+            return this.selectedItems.length === 1 ? this.selectedItems[0].value : `Выбрано ${ this.selectedItems.length }`;
         }
-        return null;
+        return 'Ничего не выбранно';
     }
     
     public selectItem( item: Selectors ) {
-        this.current = item;
-        this.selected.emit( item );
+        event.stopPropagation();
+        const idx = this.selectedItems.findIndex( i => i.id === item.id );
+        if ( idx >= 0 ) {
+            this.selectedItems.splice( idx, 1 );
+        } else {
+            this.selectedItems.push( item );
+        }
+        
+        this.selected.emit( this.selectedItems );
+    }
+    
+    public isSelected( item: Selectors ) {
+        return this.selectedItems && this.selectedItems.length ? this.selectedItems.some( select => select.id === item.id ) : false;
     }
 }

@@ -39,13 +39,12 @@
 				border: rem(1px) solid var(--input-border-color);
 				box-sizing: border-box;
 				border-radius: rem(7px);
-				//margin: $base-margin/2 0;
 				height: $base-padding*3;
 				padding: 0 $base-padding;
 				display: flex;
 				align-items: center;
 				&:hover {
-						background: var(--pagination-disabled-color);
+						background: var(--disabled-color);
 				}
 		}
 

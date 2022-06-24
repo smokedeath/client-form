@@ -1,0 +1,29 @@
+$base-font-family: "Montserrat",
+Frutiger,
+Arial,
+sans-serif;
+
+
+:root {
+		--base-background: #f6f6f6;
+		--btn-disabled: #DFE3E5;
+		--panel-background: #FFFFFF;
+		--switcher-point-color: #DFE3E5;
+		--switcher-disabled-color: #F9F9F9;
+		--modal-container-background: #FFFFFF;
+		--select-block-border: #DFE3E5;
+		--input-background-color: #F9F9F9;
+		--input-border-color: #EBEBEB;
+		--stat-block-route-color: #5A5A5A;
+		--disabled-color: #DFE3E5;
+		--red: #F35252;
+		--gray: #C4C4C4;
+}
+
+$small-font-size: rem(10px);
+$small-line-height: rem(12px);
+$base-font-weight: 400;
+$bold-font-weight: 600;
+
+$base-margin: 1rem;
+$base-padding: 1rem;

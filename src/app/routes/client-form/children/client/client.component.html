@@ -1,0 +1,98 @@
+<section class="registration">
+    <div class="container h-100">
+        <div class="flex-1 align-middle align-center h-100">
+            <div class="registration__section">
+                <form [formGroup]="form">
+                    <div class="registration__block ta-center m-b">
+                        <label class="m-b" for="firstName">Фамилия*</label>
+                        <input formControlName="firstName" type="text" id="firstName"
+                               [class.registration__input--error]="form.get('firstName').invalid && form.get('firstName').touched"
+                               class="registration__input"/>
+                        <div class="red-text"
+                             *ngIf="form.get('firstName').invalid && form.get('firstName').touched">
+                            <small *ngIf="form.get('firstName').errors['required']">
+                                Поле должно быть заполнено.
+                            </small>
+                        </div>
+                    </div>
+                    <div class="registration__block ta-center m-b">
+                        <label class="m-b" for="lastName">Имя*</label>
+                        <input formControlName="lastName" type="text" id="lastName"
+                               [class.registration__input--error]="form.get('lastName').invalid && form.get('lastName').touched"
+                               class="registration__input"/>
+                        <div class="red-text"
+                             *ngIf="form.get('lastName').invalid && form.get('lastName').touched">
+                            <small *ngIf="form.get('lastName').errors['required']">
+                                Поле должно быть заполнено.
+                            </small>
+                        </div>
+                    </div>
+                    <div class="registration__block ta-center m-b">
+                        <label class="m-b" for="secondName">Отчество</label>
+                        <input formControlName="secondName" type="text" id="secondName" class="registration__input"/>
+                    </div>
+                    <div class="registration__block ta-center m-b">
+                        <label class="m-b" for="birthDay">Дата рождения*</label>
+                        <input formControlName="birthDay" type="date" id="birthDay" min="1900-01-01" max="2022-12-31"
+                               [class.registration__input--error]="form.get('birthDay').invalid && form.get('birthDay').touched"
+                               class="registration__input"/>
+                        <div class="red-text"
+                             *ngIf="form.get('birthDay').invalid && form.get('birthDay').touched">
+                            <small *ngIf="form.get('birthDay').errors['required']">
+                                Поле должно быть заполнено.
+                            </small>
+                            <small *ngIf="form.get('birthDay').errors['dateValidator']">
+                                Поле должно быть заполнено.
+                            </small>
+                        </div>
+                    </div>
+                    <div class="registration__block ta-center m-b">
+                        <label class="m-b" for="phone">Номер телефона*</label>
+                        <input formControlName="phone" type="number" id="phone"
+                               [class.registration__input--error]="form.get('phone').invalid && form.get('phone').touched"
+                               class="registration__input"/>
+                        <div class="red-text" *ngIf="form.get('phone').invalid && form.get('phone').touched">
+                            <small>
+                                Номер телефона должен содержать 11 цифр
+                            </small>
+                        </div>
+                    </div>
+                    <div class="registration__block ta-center m-b">
+                        <label class="m-b">Пол</label>
+                        <span class="w100">
+                            <select-block [data]="sex" (selected)="form.patchValue({'sex': $event})"
+                                          [current]="form.get('sex').value"></select-block>
+                        </span>
+                    </div>
+                    <div class="registration__block ta-center m-b">
+                        <label class="m-b">Группа клиентов*</label>
+                        <span class="w100">
+                            <select-block-multi [data]="clientsGroup" (selected)="form.patchValue({'clientsGroup': $event})"
+                                          [selectedItems]="form.get('clientsGroup').value"></select-block-multi>
+                        </span>
+                    </div>
+                    <div class="registration__block ta-center m-b">
+                        <label class="m-b">Координатор</label>
+                        <span class="w100">
+                            <select-block [data]="coordinator" (selected)="form.patchValue({'coordinator': $event})"
+                                          [current]="form.get('coordinator').value"></select-block>
+                        </span>
+                    </div>
+                    <div class="flex-1 m-b-2">
+                        <label class="m-r">Не отправлять СМС</label>
+                        <switcher [checked]="form.get('dontSentSms').value"
+                                  (change)="form.patchValue({'dontSentSms': $event})"></switcher>
+                    </div>
+                    <div class="m-b-2 w100 flex-1 align-center">
+                        <button class="registration__button" type="submit" (click)="onNextClick()"
+                                [disabled]="form.invalid || form.disabled">Далее
+                        </button>
+                    </div>
+                    <div class="text-small gray-text">
+                        *Поля обязательные к заполнению
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

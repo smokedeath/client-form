@@ -1,0 +1,44 @@
+@include b(registration) {
+		background: #6a11cb;
+		background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+		background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+		height: 100vh !important;
+
+		@include e(section) {
+				border-radius: 1rem;
+				background-color: rgb(33, 37, 41);
+				color: #fff;
+				padding: $base-margin*3 !important;
+				min-width: 60%;
+		}
+
+		@include e(block) {
+				display: flex;
+				flex-direction: column;
+		}
+
+		@include e(input) {
+				padding: $base-margin*0.5 $base-margin;
+				border-radius: $base-margin*0.3;
+
+				@include m(error) {
+						border-color: red;
+				}
+		}
+
+		@include e(button) {
+				padding: $base-margin*0.5 $base-margin*3;
+				font-size: $base-margin*1.25;
+				border-radius: $base-margin*0.3;
+				cursor: pointer;
+				color: #fff;
+				background-color: #0000;
+				border: 1px solid #fff;
+
+				&:disabled {
+						color: #cccccc;
+						border: 1px solid #cccccc;
+						cursor: not-allowed;
+				}
+		}
+}

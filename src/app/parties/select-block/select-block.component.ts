@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ResponseDomainResponse } from '../../../api/models/response-domain-response';
+import { Selectors } from '../../models/selectors';
 
 export const MAX_LENGTH = 20;
 
@@ -9,32 +9,31 @@ export const MAX_LENGTH = 20;
 } )
 
 export class SelectBlockComponent {
-    @Input() data: ResponseDomainResponse[] = [];
+    @Input() data: Selectors[] = [];
     
-    @Input() set current( value: ResponseDomainResponse ) {
+    @Input() set current( value: Selectors ) {
         this.selectedItem = null;
         if ( value ) {
             this.selectedItem = { ...value };
         }
     }
     
-    @Output() selected: EventEmitter<ResponseDomainResponse>
+    @Output() selected: EventEmitter<Selectors>
     public show: boolean = false;
-    public selectedItem: ResponseDomainResponse;
+    public selectedItem: Selectors;
     
     constructor() {
-        this.selected = new EventEmitter<ResponseDomainResponse>();
+        this.selected = new EventEmitter<Selectors>();
     }
     
-    public getName( item: ResponseDomainResponse ): string {
+    public getName( item: Selectors ): string {
         if ( item ) {
-            const name = item.external_name || item.name;
-            return name && name.length > MAX_LENGTH ? `${ name.substr( 0, MAX_LENGTH ) }...` : name;
+            return item.value && item.value.length > MAX_LENGTH ? `${ item.value.substr( 0, MAX_LENGTH ) }...` : item.value;
         }
         return null;
     }
     
-    public selectItem( item: ResponseDomainResponse ) {
+    public selectItem( item: Selectors ) {
         this.current = item;
         this.selected.emit( item );
     }

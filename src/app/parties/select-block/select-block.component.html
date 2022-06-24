@@ -6,6 +6,6 @@
     <drop-down-icon class="select-block__caret"></drop-down-icon>
     <div class="select-block__options">
         <div class="select-block__option" *ngFor="let item of data"
-             (click)="selectItem(item)">{{item?.external_name || item?.name}}</div>
+             (click)="selectItem(item)">{{item?.value}}</div>
     </div>
 </div>

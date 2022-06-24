@@ -7,9 +7,9 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 export class SwitcherComponent {
     @Input() checked: boolean = false;
-    @Output() change: EventEmitter<null>;
+    @Output() change: EventEmitter<boolean>;
     
     constructor() {
-        this.change = new EventEmitter<null>();
+        this.change = new EventEmitter<boolean>();
     }
 }
